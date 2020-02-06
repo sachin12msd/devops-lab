@@ -36,5 +36,16 @@ getenforce
 systemctl stop firewalld
 systemctl disable firewalld
 swapoff -a
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+systemctl enable  kubelet
+systemctl start  kubelet
+man sysctl
+sysctl -a |grep bridge
+cat <<EOF > /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+kubeadm join 192.168.122.51:6443 --token 87nwl5.iwzdfzq225oc3mfa  --discovery-token-ca-cert-hash sha256:7971baec1f3fd7a2047d6b187b2fb6f19092a59e72c8edefba69ad952b90ca55
 
 
