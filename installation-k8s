@@ -1,0 +1,40 @@
+ping 8.8.8.8 
+yum install epel-release
+yum update -y
+yum install -y yum-utils   device-mapper-persistent-data   lvm2
+yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --enable docker-ce-nightly
+yum-config-manager --enable docker-ce-test
+yum install docker-ce docker-ce-cli containerd.io
+systemctl enable docker
+systemctl start  docker
+
+
+
+ ```
+1.  Kubernets Lab Setup Download repository 
+2.  Hardware (2 GB RAM, 2 CPU ) 
+3.  ensure Swap Off (remove swap partition entry from /etc/fstab file
+4.  Firewalld disable
+5.  Selinux Disable / permissive mode
+ ```
+ 
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+getenforce
+setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+getenforce
+systemctl stop firewalld
+systemctl disable firewalld
+swapoff -a
+
+
