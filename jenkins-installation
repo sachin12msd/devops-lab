@@ -18,6 +18,7 @@ yum install -y jenkins
 #Ensure service is started and enabled
 systemctl start jenkins
 systemctl enable jenkins
+/sbin/chkconfig jenkins on
 
 #Open jenkins port in firewalll 8080
 firewall-cmd --permanent --add-port=8080/tcp
