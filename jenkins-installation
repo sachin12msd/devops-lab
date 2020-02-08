@@ -1,8 +1,8 @@
-CentOS Linux RPM packages for Jenkins
-https://pkg.jenkins.io/redhat-stable/
+#CentOS Linux RPM packages for Jenkins
+#https://pkg.jenkins.io/redhat-stable/
 
 
-ping 8.8.8.8
+ping -c4 8.8.8.8
 yum install  -y epel-release
 yum -y update 
 yum install -y java
@@ -24,5 +24,5 @@ firewall-cmd --permanent --add-port=8080
 firewall-cmd --reload
 
 #Access Jenkins from Web Portal
-http://yourip:8080
+#http://yourip:8080
 
