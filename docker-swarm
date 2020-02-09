@@ -73,5 +73,14 @@ Scal up and down services
 #docker service ls
 #docker service scale web=2
 
+========================================
+upgrade and rollback services
+========================================
+docker service ls
+docker node ps
+docker service update --image raikwar141/thephotocraze:3 web
+docker node ps
+dokcer service ls
+dokcer service rollback web
                                                                                                                             60,1          Bot
 
