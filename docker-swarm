@@ -1,3 +1,22 @@
+Clone
+git clone https://github.com/sonulodhagithub/webapp.git
+#Docker file
+
+FROM httpd
+LABEL description="Continuous Integration, Continuous Delivery"
+MAINTAINER DevOps Interns
+EXPOSE 80
+COPY ./webapp /usr/local/apache2/htdocs/
+
+
+#docker build -t mitrasonu/app1 .
+#docker login
+#docker push mitrasonu/app1
+
+#docker build -t mitrasonu/app2 .
+#docker push mitrasonu/app2
+
+
 !/bin/bash
 Docker Swarm
 --------------------------------------
@@ -57,10 +76,10 @@ pull docker images from registry
 Create services
 ========================================================================================================
 # (port forward -p [hostport:containerport]
-#docker service create --replicas 2 -p 7070:80 --name web raikwar141/thephotocraze:2
+#docker service create --replicas 2 -p 7070:80 --name app1 mitrasonu/app1
 #docker service ls
 #docker service ps servicename
-#docker node ps web
+#docker node ps app
 
 
 ========================================
@@ -69,18 +88,18 @@ Scal up and down services
 
 #docker service scale servicename=2
 #docker services ls
-#docker service scale web=4
+#docker service scale app1=4
 #docker service ls
-#docker service scale web=2
+#docker service scale app1=2
 
 ========================================
 upgrade and rollback services
 ========================================
 docker service ls
 docker node ps
-docker service update --image raikwar141/thephotocraze:3 web
+docker service update --image mitrasonu/app2 app1
 docker node ps
 dokcer service ls
-dokcer service rollback web
+dokcer service rollback app1
                                                                                                                             60,1          Bot
 
