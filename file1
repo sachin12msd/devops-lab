@@ -1,0 +1,24 @@
+echo "This is my first webpage" >index.html
+
+
+
+
+
+vim Dockerfile
+
+
+FROM httpd
+COPY ./index.html /usr/local/apache2/htdocs
+
+docker build -t app1 .
+
+docker images
+
+docker run -d  app1
+
+docker ps 
+
+finding docker dockerfile
+https://github.com/docker-library/mysql/
+https://github.com/docker-library/httpd
+

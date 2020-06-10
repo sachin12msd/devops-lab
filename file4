@@ -1,0 +1,13 @@
+vim Dockerfile
+
+FROM centos
+RUN yum install  httpd -y
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+ENTRYPOINT echo " entrypoint output in docker file"
+CMD echo "cmd output in docker file"
+
+docker build -t app4
+
+docker run -P -d app4
+
+

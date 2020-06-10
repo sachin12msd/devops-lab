@@ -1,0 +1,28 @@
+FROM centos
+RUN yum install openssh-server -y
+RUN useradd student
+RUN echo student:student | chpasswd
+RUN ssh-keygen -A
+EXPOSE 22
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
+
+
+docker built -t centssh .
+docker run -d -P centssh
+  
+
+
+
+
+
+
+#
+
+
+This issue may come from /run/nologin. /run/nologin is created by systemd-tmpfiles-setup.service. 
+It is then removed by systemd-user-sessions.service. 
+So you have to delete this:
+
+$ ls -l /run/nologin
+# rm /run/nologin
+

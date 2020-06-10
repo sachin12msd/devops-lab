@@ -1,0 +1,15 @@
+vim Dockerfile
+
+FROM centos
+RUN yum install git httpd -y
+RUN git clone https://github.com/raikwar141/ThePhotoCraze_WebSite.git
+RUN cp -ar ThePhotoCraze_WebSite/* /var/www/html/
+EXPOSE 80
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+
+docker build -t app2
+
+docker run -P -d app2
+
+
