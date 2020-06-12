@@ -1,0 +1,16 @@
+# comment line alpine linux openssh port 22 service sshd
+FROM alpine
+LABEL description="This is a custom sshd container image"
+MAINTAINER SONU LODHA <sonulodha@yahoo.com>
+# package manager apk
+RUN apk update
+RUN apk add openssh-server
+# echo password:username | chpasswd
+RUN ssh-keygen -A
+EXPOSE 22
+RUN adduser -D student
+RUN  echo student:student | chpasswd
+RUN apk add sudo
+RUN echo "student ALL=(ALL) ALL" > /etc/sudoers.d/student
+CMD ["/usr/sbin/sshd", "-D"]
+RUN rm -f /var/run/nologin
