@@ -65,18 +65,30 @@ Centos -2       worker1                 docker  install
 (standalone (master and worker both one machine_
 
 =====================
-install docker
+yum install install docker
+systemctl start docker
+systemctl enable docker
 inti-- docker swarm
 #docker swarm init
+#manager
+docker swarm init
+docker swarm join-token worker (output copy and paste worker node)
+docker node ls
+docker service ls
+
+#worker 
+(token paste)
+
+
 ========================================================================================================
 pull docker images from registry
-#docker pull raikwar141/thephotocraze
+#docker pull mitrasonu/rgpvapp:1
 
 ========================================================================================================
 Create services
 ========================================================================================================
 # (port forward -p [hostport:containerport]
-#docker service create --replicas 2 -p 7070:80 --name app1 mitrasonu/app1
+#docker service create --replicas 3 -p 7070:80 --name result mitrasonu/rgpvapp:1
 #docker service ls
 #docker service ps servicename
 #docker node ps app
@@ -85,21 +97,22 @@ Create services
 ========================================
 Scal up and down services
 ========================================
-
-#docker service scale servicename=2
+#manager
+#docker service scale servicename=6
 #docker services ls
-#docker service scale app1=4
+#docker service scale result=6
 #docker service ls
-#docker service scale app1=2
+#docker service scale result=2
 
 ========================================
 upgrade and rollback services
 ========================================
+#manager
 docker service ls
 docker node ps
-docker service update --image mitrasonu/app2 app1
+docker service update --image mitrasonu/rgpvapp:2 result
 docker node ps
 dokcer service ls
-dokcer service rollback app1
+dokcer service rollback mitrasonu/rgpvapp:1
                                                                                                                             60,1          Bot
 
