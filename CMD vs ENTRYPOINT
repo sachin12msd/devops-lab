@@ -1,0 +1,55 @@
+vim Dockerfile
+FROM ubuntu
+CMD echo 'Hello From Docker'
+
+docker build -t   app .
+
+docker run -it app
+docker run -it app echo "hello docker"
+
+
+vim Dockerfile
+FROM ubuntu
+CMD echo 'Hello From Docker'
+CMD echo 'hello docker swarm'
+docker run -it app
+
+============================
+vim Dockerfile
+FROM ubuntu
+ENTRYPOINT ["echo", "Hello From Docker"]
+
+
+docker run -it app
+docker run -it app echo "hello docker"
+
+
+
+vim Dockerfile
+FROM ubuntu
+ENTRYPOINT ["echo", "Hello From Docker"]
+docker run -it app
+docker run -it app echo "hello docker"
+
+
+
+vim Dockerfile
+FROM ubuntu
+ENTRYPOINT ["echo"]
+CMD ["Hello From Docker"]
+docker run -it app
+docker run -it app echo "hello docker"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
