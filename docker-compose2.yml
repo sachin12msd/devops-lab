@@ -1,8 +1,6 @@
 services:
-  database:
-   imaegs: mariadb
-  web:
-   image: httpd
-   ports:
-    - 90:80/tcp
+ database:
+  image: mariadb
+ web:
+  image: httpd
 version: '3.0'
