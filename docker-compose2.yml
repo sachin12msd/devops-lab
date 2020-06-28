@@ -4,5 +4,5 @@ services:
   web:
    image: httpd
    ports:
-    - 90:80
+    - 90:80/tcp
 version: '3.0'
