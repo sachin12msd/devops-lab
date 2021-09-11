@@ -7,6 +7,6 @@ RUN useradd student
 RUN echo student@123 | passwd --stdin student
 RUN ssh-keygen -A
 EXPOSE 22
-ADD https://github.com/sonulodha/devops-lab/blob/master/docker-installation /root/
+ADD https://github.com/sachin12msd/devops-lab/blob/master/ssh%20sachin%20lect%3D17
 CMD ["/usr/sbin/sshd", "-D"]
 RUN rm -f /var/run/nologin         
